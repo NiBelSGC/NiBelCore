@@ -1,7 +1,7 @@
 # 🧩 NiBel Core 1.0
 
 **Framework PHP minimalista y modular desarrollado por [NiBel](https://nibel.pe)**  
-**Autor:** Weimar  
+**Autor:** Weimar Muro Almeida
 **© 2025 NiBel — Todos los derechos reservados**
 
 ---
