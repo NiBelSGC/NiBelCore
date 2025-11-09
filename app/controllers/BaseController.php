@@ -32,6 +32,20 @@ class BaseController
         $router->render('inicio', []);
     }
 
+     /**
+     * 🧭 Método documentacion()
+     * ------------------------------------------------
+     * Documentación principal del módulo. 
+     * Cada controlador puede
+     * sobrescribirlo o adaptarlo.
+     *
+     * @param Router $router Instancia del enrutador principal.
+     */
+    public static function docs(Router $router)
+    {
+        $router->render('/docs', []);
+    }
+
     /**
      * 🧩 Método crear()
      * ------------------------------------------------

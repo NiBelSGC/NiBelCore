@@ -22,6 +22,9 @@
 $router->get('/', [BaseController::class, 'inicio']);
 $router->get('/inicio', [BaseController::class, 'inicio']);
 
+//Documentación
+$router->get('/docs', [BaseController::class, 'docs']);
+
 // Crear nuevo registro
 $router->get('/modulo/crear', [BaseController::class, 'crear']);
 $router->post('/modulo/crear', [BaseController::class, 'crear']);
@@ -32,3 +35,4 @@ $router->post('/modulo/editar', [BaseController::class, 'editar']);
 
 // Eliminar registro
 $router->post('/modulo/eliminar', [BaseController::class, 'eliminar']);
+

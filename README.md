@@ -43,6 +43,8 @@ NiBelCore/
 ├── .gitignore → Reglas de exclusión para Git
 └── README.md → Documentación principal del framework
 
+yaml
+Copiar código
 
 ---
 
@@ -75,29 +77,26 @@ npm install
 cp app/config/.env.example app/config/.env
 
 # 6️⃣ Configura tus credenciales de base de datos en .env
+
 # 7️⃣ Levanta el servidor local
 php -S localhost:8000 -t public
-
-
 🌱 Variables de Entorno (.env)
-
 El archivo .env define las credenciales y configuraciones globales del sistema.
 Por motivos de seguridad no se versiona.
-Se incluye un .env.example como plantilla:
+Se incluye un archivo .env.example como plantilla.
 
-# Archivo: .env.example
+ini
+Copiar código
+DB_HOST = localhost
+DB_USER = root
+DB_PASS =
+DB_NAME = nibelcore
 
-DB_HOST = host
-DB_USER = user
-DB_PASS = password
-DB_NAME = database
-
-EMAIL_HOST = host
-EMAIL_PORT = port
+EMAIL_HOST = smtp.host.mail
+EMAIL_PORT = 2525
 EMAIL_USER = username
 EMAIL_PASS = password
-
-👉 El framework usa Dotenv para cargar estas variables automáticamente desde
+👉 El framework usa Dotenv para cargar automáticamente estas variables desde
 app/config/bootstrap.php.
 
 🧠 Arquitectura MVC
@@ -105,20 +104,19 @@ Componente	Ubicación	Descripción
 Modelos	app/models/	Heredan de Model\Master y manejan consultas a la BD.
 Vistas	app/views/	Plantillas HTML/PHP que muestran el contenido al usuario.
 Controladores	app/controllers/	Contienen la lógica de negocio y control de flujo.
+
 🌍 Enrutamiento
+El sistema utiliza un router propio (Router.php) para mapear rutas HTTP de forma limpia:
 
-El sistema utiliza un router propio (core/Router.php) para mapear rutas HTTP de forma limpia:
-
+php
+Copiar código
 $router->get('/inicio', [InicioController::class, 'index']);
 $router->post('/login', [AuthController::class, 'login']);
-
 El router se encarga de ejecutar el controlador correcto y renderizar la vista dentro del layout base del sistema.
 
 🔌 Bootstrap del Sistema
-
 El archivo app/config/bootstrap.php se ejecuta automáticamente al iniciar el proyecto.
-
-Responsabilidades principales:
+Sus responsabilidades principales son:
 
 Cargar Composer (autoload)
 
@@ -129,32 +127,90 @@ Conectar a la base de datos (MySQLi)
 Asignar la conexión a la clase base Master
 
 🧩 Autoload y Namespaces
-
 NiBel Core utiliza PSR-4 autoloading gracias a Composer.
 Esto permite crear clases bajo namespaces y cargarlas automáticamente:
 
+php
+Copiar código
 namespace Model;
 
 class Usuario extends Master {
     // Lógica del modelo de usuarios
 }
+⚙️ Compilación con Gulp
+NiBel Core integra un flujo de trabajo moderno mediante Gulp para compilar y optimizar recursos front-end
+(SCSS, JavaScript e imágenes). Esto mantiene el proyecto limpio y rápido en producción.
+
+📦 Instalación de dependencias
+bash
+Copiar código
+npm install
+🚀 Ejecutar compilación en modo desarrollo
+bash
+Copiar código
+npx gulp dev
+O si lo tienes configurado en package.json:
+
+bash
+Copiar código
+npm run gulp dev
+📁 Ubicación de archivos
+src/scss/ → Archivos fuente SCSS
+
+src/js/ → Archivos JavaScript
+
+src/img/ → Imágenes fuente (PNG/JPG)
+
+public/build/ → Salida compilada
+
+🧰 Tareas incluidas
+js
+Copiar código
+const { src, dest, watch, parallel } = require('gulp');
+
+// Compilar SCSS → CSS minificado con sourcemaps
+function css() { ... }
+
+// Convertir imágenes a WebP y AVIF
+function versionWebp() { ... }
+function versionAvif() { ... }
+
+// Combinar y minificar JS
+function javascript() { ... }
+
+// Modo desarrollo (watch)
+function dev() { ... }
+
+exports.dev = parallel(versionWebp, versionAvif, javascript, dev);
+📤 Salida generada
+public/build/css/ → Archivos .css compilados y minificados
+
+public/build/js/ → Archivos .js concatenados y minificados
+
+public/build/img/ → Imágenes optimizadas (WebP y AVIF)
+
+⚡ Dependencias utilizadas
+lua
+Copiar código
+gulp-sass, gulp-plumber, gulp-concat, gulp-rename,
+autoprefixer, cssnano, gulp-postcss, gulp-sourcemaps,
+gulp-cache, gulp-webp, gulp-avif, gulp-terser-js
+Estas herramientas garantizan un flujo de trabajo ágil, compatible con navegadores modernos y fácilmente extensible agregando nuevas tareas al archivo gulpfile.js.
 
 💡 Filosofía de Diseño
-
 “Simplicidad, claridad y control total del código.”
 
 NiBel Core evita dependencias innecesarias y promueve un flujo limpio:
 
-Código 100% entendible y modificable.
+Código 100% entendible y modificable
 
-Arquitectura MVC real y modular.
+Arquitectura MVC real y modular
 
-Carga automática sin configuraciones complejas.
+Carga automática sin configuraciones complejas
 
-Ideal para proyectos empresariales o frameworks derivados.
+Ideal para proyectos empresariales o frameworks derivados
 
 🔒 Buenas Prácticas
-
 ✅ No subir al repositorio:
 
 .env
@@ -178,21 +234,19 @@ Mantener nombres claros en rutas y clases
 Documentar tus modelos y controladores
 
 📜 Licencia
-
 NiBel Core Framework es software de código abierto bajo la licencia MIT.
 Puedes usarlo, modificarlo y redistribuirlo libremente, manteniendo la referencia al autor original.
 
 👨‍💻 Autor
-
-Desarrollado por: Weimar
-Empresa: NiBel
-Sitio Web: https://nibel.pe
- (en desarrollo)
-Correo: contacto@nibel.pe
+Desarrollado por: Weimar Muro Almeida
+Empresa: NiBel Sistemas Gestión & Consultoría
+Sitio Web: https://nibel.online (en desarrollo)
+Correo: online@nibel.online
 
 🧭 Versión
-
 NiBel Core Framework — v1.0
 📅 Lanzamiento: Noviembre 2025
 
 🚀 Construido con pasión por la simplicidad, pensado para desarrolladores que aman entender su código al 100%.
+
+

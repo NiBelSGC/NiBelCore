@@ -33,7 +33,7 @@
     <header class="header">
         <div class="container">
             <div class="logo-area">
-                <img src="build/img/logo.png" alt="NiBel Core Logo" class="logo">
+                <a href="inicio"><img src="build/img/logo.png" alt="NiBel Core Logo" class="logo"></a>
                 <h1 class="brand">NiBel Core <span>1.0</span></h1>
             </div>
 

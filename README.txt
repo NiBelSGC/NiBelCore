@@ -90,6 +90,74 @@ NiBelCore/
     php -S localhost:8000 -t public
 
 ─────────────────────────────────────────────────────────────
+⚡  COMPILACIÓN CON GULP
+─────────────────────────────────────────────────────────────
+
+NiBel Core integra un flujo de trabajo moderno mediante Gulp para
+compilar y optimizar recursos front-end (SCSS, JavaScript e imágenes),
+manteniendo el proyecto limpio y eficiente en producción.
+
+Instalación de dependencias:
+-------------------------------------------------------------
+npm install
+-------------------------------------------------------------
+
+Ejecución en modo desarrollo:
+-------------------------------------------------------------
+npx gulp dev
+-------------------------------------------------------------
+O si está configurado en package.json:
+-------------------------------------------------------------
+npm run gulp dev
+-------------------------------------------------------------
+
+Ubicación de archivos:
+-------------------------------------------------------------
+src/scss/   → Archivos fuente SCSS
+src/js/     → Archivos JavaScript
+src/img/    → Imágenes fuente (PNG/JPG)
+public/build/ → Salida compilada (CSS, JS, imágenes optimizadas)
+-------------------------------------------------------------
+
+Tareas incluidas (gulpfile.js):
+-------------------------------------------------------------
+const { src, dest, watch, parallel } = require('gulp');
+
+// Compilar SCSS → CSS minificado con sourcemaps
+function css() { ... }
+
+// Convertir imágenes a WebP y AVIF
+function versionWebp() { ... }
+function versionAvif() { ... }
+
+// Combinar y minificar JS
+function javascript() { ... }
+
+// Modo desarrollo (watch)
+function dev() { ... }
+
+exports.dev = parallel(versionWebp, versionAvif, javascript, dev);
+-------------------------------------------------------------
+
+Salida generada:
+-------------------------------------------------------------
+public/build/css/  → Archivos .css compilados y minificados
+public/build/js/   → Archivos .js concatenados y minificados
+public/build/img/  → Imágenes optimizadas en WebP y AVIF
+-------------------------------------------------------------
+
+Dependencias utilizadas:
+-------------------------------------------------------------
+gulp-sass, gulp-plumber, gulp-concat, gulp-rename,
+autoprefixer, cssnano, gulp-postcss, gulp-sourcemaps,
+gulp-cache, gulp-webp, gulp-avif, gulp-terser-js
+-------------------------------------------------------------
+
+Estas herramientas garantizan un flujo de trabajo ágil y
+compatible con navegadores modernos. El sistema puede ampliarse
+fácilmente agregando nuevas tareas al archivo gulpfile.js.
+
+─────────────────────────────────────────────────────────────
 🔧  ESTRUCTURA MVC
 ─────────────────────────────────────────────────────────────
 
@@ -135,9 +203,10 @@ EMAIL_PASS = password
 El archivo `Router.php` es el núcleo del enrutamiento MVC.
 Permite registrar rutas GET y POST de forma sencilla:
 
-```php
+-------------------------------------------------------------
 $router->get('/inicio', [InicioController::class, 'index']);
 $router->post('/login', [AuthController::class, 'login']);
+-------------------------------------------------------------
 
 El router resuelve las rutas, ejecuta el controlador y renderiza
 las vistas correspondientes, enviando el contenido dinámico al
@@ -152,12 +221,13 @@ Esto permite declarar clases con namespaces y cargarlas
 automáticamente sin requires manuales.
 
 Ejemplo:
-
+-------------------------------------------------------------
 namespace Model;
 
 class Usuario extends Master {
-// Lógica del modelo de usuarios
+  // Lógica del modelo de usuarios
 }
+-------------------------------------------------------------
 
 ─────────────────────────────────────────────────────────────
 🧠 BOOTSTRAP DEL SISTEMA
@@ -166,13 +236,10 @@ class Usuario extends Master {
 El archivo app/config/bootstrap.php se ejecuta al inicio del
 proyecto. Su función es:
 
-Cargar Composer (autoload)
-
-Cargar variables del entorno (.env)
-
-Establecer la conexión global a la base de datos
-
-Asignar dicha conexión a la clase base Master
+- Cargar Composer (autoload)
+- Cargar variables del entorno (.env)
+- Establecer la conexión global a la base de datos
+- Asignar dicha conexión a la clase base Master
 
 ─────────────────────────────────────────────────────────────
 💡 FILOSOFÍA DE DISEÑO
@@ -187,17 +254,12 @@ de carga y la facilidad de extensión.
 🔒 BUENAS PRÁCTICAS
 ─────────────────────────────────────────────────────────────
 
-No subas tu archivo .env al repositorio.
-
-No subas las carpetas /vendor ni /node_modules.
-
-Usa .env.example para compartir variables genéricas.
-
-Mantén una arquitectura MVC clara.
-
-Usa controladores específicos por módulo.
-
-Documenta tus rutas y modelos.
+- No subas tu archivo .env al repositorio.
+- No subas las carpetas /vendor ni /node_modules.
+- Usa .env.example para compartir variables genéricas.
+- Mantén una arquitectura MVC clara.
+- Usa controladores específicos por módulo.
+- Documenta tus rutas y modelos.
 
 ─────────────────────────────────────────────────────────────
 📜 LICENCIA
@@ -211,16 +273,15 @@ manteniendo la referencia al autor original.
 🌐 AUTOR Y CONTACTO
 ─────────────────────────────────────────────────────────────
 
-Desarrollado por: Weimar
-Empresa: NiBel
-Sitio web: https://nibel.pe
- (en desarrollo)
-Correo: contacto@nibel.pe
+Desarrollado por: Weimar Muro Almeida 
+Empresa: NiBel Sistemas Gestión & Consultoría 
+Sitio web: https://nibel.online (en desarrollo)  
+Correo: hola@nibel.online  
 
 ─────────────────────────────────────────────────────────────
 🚀 VERSIÓN ACTUAL
 ─────────────────────────────────────────────────────────────
 
-NiBel Core Framework — v1.0
+NiBel Core Framework — v1.0  
 Lanzamiento: Noviembre 2025
 ─────────────────────────────────────────────────────────────

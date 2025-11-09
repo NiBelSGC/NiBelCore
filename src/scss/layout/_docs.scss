@@ -1,0 +1,145 @@
+// NiBel Core - Documentación (Estilos SCSS)
+@use 'base/variables' as v;
+
+.docs {
+    display: flex;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+
+    .docs-sidebar {
+        width: 260px;
+        background: white;
+        padding: 1.5rem;
+        border-radius: 12px;
+        box-shadow: 0 6px 18px rgba(13, 71, 161, 0.06);
+        position: sticky;
+        top: 24px;
+        height: fit-content;
+
+        .docs-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+
+            img {
+                width: 44px;
+            }
+
+            h2 {
+                font-size: 1.1rem;
+                color: v.$secondary;
+
+                span {
+                    color: v.$primary;
+                }
+            }
+        }
+
+        .docs-nav {
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+            margin-top: 1rem;
+
+            a {
+                text-decoration: none;
+                color: v.$gray;
+                padding: .45rem .6rem;
+                border-radius: 8px;
+                font-weight: 500;
+                display: block;
+
+                &:hover {
+                    background: linear-gradient(90deg, rgba(v.$primary, 0.06), rgba(v.$secondary, 0.04));
+                    color: v.$primary;
+                }
+            }
+        }
+
+        .docs-footer {
+            margin-top: 1.2rem;
+            text-align: center;
+        }
+    }
+
+    .docs-content {
+        flex: 1;
+
+        .docs-hero {
+            background: linear-gradient(135deg, v.$secondary, v.$primary);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 1.2rem;
+
+            h1 {
+                margin: 0;
+                font-size: 1.6rem;
+            }
+
+            .muted {
+                opacity: .9;
+            }
+        }
+
+        .docs-body {
+            background: white;
+            padding: 1.6rem;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.03);
+
+            .docs-section {
+                margin-bottom: 1.4rem;
+
+                h2 {
+                    color: v.$secondary;
+                    margin-bottom: .6rem;
+                }
+
+                pre {
+                    background: v.$bg;
+                    padding: 1rem;
+                    border-radius: 8px;
+                    overflow: auto;
+                }
+            }
+        }
+    }
+
+    @media(max-width: 900px) {
+        flex-direction: column;
+        padding: .5rem;
+
+        .docs-sidebar {
+            width: 100%;
+            position: relative;
+            top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .docs-nav {
+            flex-direction: row;
+            flex-wrap: wrap;
+
+            a {
+                font-size: .85rem;
+            }
+        }
+    }
+}
+
+.docs .docs-body .docs-section pre code {
+    display: block;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    white-space: pre;
+}
+
+.docs .docs-body .docs-section ul li {
+    margin-bottom: 0.3rem;
+}

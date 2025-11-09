@@ -3,13 +3,8 @@
 // ───────────────────────────────────────────────
 // Tipografía, colores y layout global
 // ───────────────────────────────────────────────
+@use 'base/variables' as v;
 
-$primary: #1e88e5;
-$secondary: #0d47a1;
-$bg: #f9f9fb;
-$text: #1a1a1a;
-$gray: #707070;
-$radius: 14px;
 
 * {
   margin: 0;
@@ -19,8 +14,8 @@ $radius: 14px;
 
 body {
   font-family: 'Inter', sans-serif;
-  background: $bg;
-  color: $text;
+  background: v.$bg;
+  color: v.$text;
   line-height: 1.6;
   display: flex;
   flex-direction: column;
@@ -53,11 +48,11 @@ body {
 
     .brand {
       font-weight: 700;
-      color: $secondary;
+      color: v.$secondary;
       font-size: 1.2rem;
 
       span {
-        color: $primary;
+        color: v.$primary;
       }
     }
   }
@@ -68,13 +63,13 @@ body {
 
     .nav-link {
       text-decoration: none;
-      color: $gray;
+      color: v.$gray;
       font-weight: 500;
       transition: color .2s;
 
       &:hover,
       &.active {
-        color: $primary;
+        color: v.$primary;
       }
     }
   }
@@ -90,7 +85,7 @@ body {
 .hero {
   text-align: center;
   padding: 5rem 1rem;
-  background: linear-gradient(135deg, $secondary, $primary);
+  background: linear-gradient(135deg, v.$secondary, v.$primary);
   color: white;
 
   .hero-title {
@@ -131,9 +126,9 @@ body {
   }
 
   .feature {
-    background: $bg;
+    background: v.$bg;
     padding: 2rem;
-    border-radius: $radius;
+    border-radius: v.$radius;
     text-align: center;
     transition: transform .2s ease, box-shadow .2s ease;
 
@@ -143,12 +138,12 @@ body {
     }
 
     h3 {
-      color: $secondary;
+      color: v.$secondary;
       margin-bottom: .8rem;
     }
 
     p {
-      color: $gray;
+      color: v.$gray;
       font-size: 0.95rem;
     }
   }
@@ -157,7 +152,7 @@ body {
 // CTA
 .cta {
   text-align: center;
-  background: $secondary;
+  background: v.$secondary;
   color: white;
   padding: 3rem 1rem;
 
@@ -171,17 +166,17 @@ body {
 .btn {
   display: inline-block;
   padding: .8rem 1.5rem;
-  border-radius: $radius;
+  border-radius: v.$radius;
   text-decoration: none;
   font-weight: 500;
   transition: all .2s;
 
   &.btn-primary {
-    background: $primary;
+    background: v.$primary;
     color: white;
 
     &:hover {
-      background: darken($primary, 8%);
+      background: darken(v.$primary, 8%);
     }
   }
 
@@ -191,13 +186,13 @@ body {
 
     &:hover {
       background: white;
-      color: $secondary;
+      color: v.$secondary;
     }
   }
 
   &.btn-large {
     background: #fff176;
-    color: $secondary;
+    color: v.$secondary;
     font-size: 1.1rem;
     padding: 1rem 2rem;
 
@@ -213,7 +208,7 @@ body {
   text-align: center;
   padding: 1.2rem;
   font-size: 0.9rem;
-  color: $gray;
+  color: v.$gray;
   border-top: 1px solid #e0e0e0;
 }
 

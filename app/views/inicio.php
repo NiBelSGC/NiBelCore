@@ -16,8 +16,8 @@
         <p class="hero-subtitle">Un micro framework PHP moderno, modular y con arquitectura MVC limpia.</p>
 
         <div class="hero-buttons">
-            <a href="/docs" class="btn btn-primary">📘 Ver documentación</a>
-            <a href="https://github.com/nibelcore" target="_blank" class="btn btn-outline">⭐ GitHub</a>
+            <a href="docs" class="btn btn-primary">📘 Ver documentación</a>
+            <a href="https://github.com/Weicraft/NiBelCore" target="_blank" class="btn btn-outline">⭐ GitHub</a>
         </div>
     </div>
 </section>
@@ -48,5 +48,5 @@
 
 <section class="cta">
     <h3>Comienza tu proyecto con NiBel Core hoy 🚀</h3>
-    <a href="/docs" class="btn btn-large">Explorar la documentación →</a>
+    <a href="docs" class="btn btn-large">Explorar la documentación →</a>
 </section>

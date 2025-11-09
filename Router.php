@@ -49,7 +49,7 @@ class Router
         $auth = $_SESSION['login'] ?? null;
 
         // Rutas públicas (no requieren login)
-        $rutas_publicas = ['/login', '/olvide', '/reestablecer'];
+        $rutas_publicas = ['/', '/inicio', '/docs', '/login', '/olvide', '/reestablecer'];
 
         // Detecta la URL actual de forma compatible con distintos servidores
         $urlActual = $_SERVER['PATH_INFO']
