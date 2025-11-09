@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>404 — Página no encontrada</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-start: #0f0f11;
+      --bg-end: #1b1c1e;
+      --panel: #222327;
+      --border: #2f3034;
+      --text: #f1f5f9;
+      --muted: #9ca3af;
+      --accent: #f87171;
+      --accent-dark: #ef4444;
+      --accent-light: #fca5a5;
+      --radius: 16px;
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(145deg, var(--bg-start), var(--bg-end));
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 32px;
+      overflow: hidden;
+    }
+
+    .card {
+      position: relative;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 56px 40px;
+      width: 100%;
+      max-width: 480px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.45),
+                  inset 0 1px 0 rgba(255,255,255,0.03);
+      overflow: hidden;
+      z-index: 2;
+      background: var(--panel);
+    }
+
+    /* Fondo con imagen */
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url('build/img/404.jpg') center/cover no-repeat;
+      opacity: 0.75;
+      z-index: 0;
+      filter: brightness(0.85) contrast(1.1);
+    }
+
+    /* Capa oscura suave encima de la imagen */
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.25);
+      z-index: 1;
+    }
+
+    /* ✅ Barra superior rojita */
+    .card::marker {
+      content: none;
+    }
+    .card span.top-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 6px;
+      width: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+      z-index: 3;
+    }
+
+    h1, h2, p, .actions, footer {
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: 110px;
+      margin: 0;
+      color: var(--accent);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -2px;
+      text-shadow: 0 0 30px rgba(239, 68, 68, 0.25);
+    }
+
+    h2 {
+      font-size: 22px;
+      font-weight: 600;
+      margin: 18px 0 8px;
+      color: var(--text);
+    }
+
+    p {
+      color: var(--muted);
+      margin: 0 0 30px;
+      font-size: 15px;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+      font-size: 15px;
+    }
+
+    .btn.primary {
+      background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+      color: #1a1a1a;
+      box-shadow: 0 6px 18px rgba(248, 113, 113, 0.25);
+    }
+
+    .btn.primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(239, 68, 68, 0.35);
+    }
+
+    .btn.ghost {
+      background: transparent;
+      color: var(--accent-light);
+      border: 1px solid var(--accent);
+    }
+
+    .btn.ghost:hover {
+      background: rgba(248, 113, 113, 0.1);
+      transform: translateY(-2px);
+    }
+
+    footer {
+      margin-top: 28px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 80px; }
+      .card { padding: 40px 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card" role="alert">
+    <span class="top-bar"></span> <!-- ✅ Barra rojita -->
+    <h1>404</h1>
+    <h2>Página no encontrada</h2>
+    <p>Lo sentimos, la página que intentas visitar no existe o ha sido movida.</p>
+
+    <div class="actions">
+      <a href="dashboard" class="btn primary">Volver al inicio</a>
+      <a href="javascript:history.back()" class="btn ghost">Regresar</a>
+    </div>
+
+    <footer>© 2025 — NiBel Core</footer>
+  </div>
+</body>
+</html>

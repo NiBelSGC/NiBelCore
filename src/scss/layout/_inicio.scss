@@ -1,0 +1,234 @@
+// ───────────────────────────────────────────────
+// 🎨 NiBel Core SCSS Base
+// ───────────────────────────────────────────────
+// Tipografía, colores y layout global
+// ───────────────────────────────────────────────
+
+$primary: #1e88e5;
+$secondary: #0d47a1;
+$bg: #f9f9fb;
+$text: #1a1a1a;
+$gray: #707070;
+$radius: 14px;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: $bg;
+  color: $text;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+// HEADER
+.header {
+  background: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  padding: 1rem 0;
+
+  .container {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem;
+  }
+
+  .logo-area {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    .logo {
+      width: 160px;
+    }
+
+    .brand {
+      font-weight: 700;
+      color: $secondary;
+      font-size: 1.2rem;
+
+      span {
+        color: $primary;
+      }
+    }
+  }
+
+  .nav {
+    display: flex;
+    gap: 1.5rem;
+
+    .nav-link {
+      text-decoration: none;
+      color: $gray;
+      font-weight: 500;
+      transition: color .2s;
+
+      &:hover,
+      &.active {
+        color: $primary;
+      }
+    }
+  }
+}
+
+// MAIN CONTENT
+.main {
+  flex: 1;
+  padding: 3rem 1.5rem;
+}
+
+// HERO SECTION
+.hero {
+  text-align: center;
+  padding: 5rem 1rem;
+  background: linear-gradient(135deg, $secondary, $primary);
+  color: white;
+
+  .hero-title {
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+
+    span {
+      color: #fff176;
+    }
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+  }
+
+  .hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+}
+
+// FEATURES
+.features {
+  background: white;
+  padding: 4rem 1.5rem;
+
+  .container {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .feature {
+    background: $bg;
+    padding: 2rem;
+    border-radius: $radius;
+    text-align: center;
+    transition: transform .2s ease, box-shadow .2s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+    }
+
+    h3 {
+      color: $secondary;
+      margin-bottom: .8rem;
+    }
+
+    p {
+      color: $gray;
+      font-size: 0.95rem;
+    }
+  }
+}
+
+// CTA
+.cta {
+  text-align: center;
+  background: $secondary;
+  color: white;
+  padding: 3rem 1rem;
+
+  h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+// BUTTONS
+.btn {
+  display: inline-block;
+  padding: .8rem 1.5rem;
+  border-radius: $radius;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all .2s;
+
+  &.btn-primary {
+    background: $primary;
+    color: white;
+
+    &:hover {
+      background: darken($primary, 8%);
+    }
+  }
+
+  &.btn-outline {
+    border: 2px solid white;
+    color: white;
+
+    &:hover {
+      background: white;
+      color: $secondary;
+    }
+  }
+
+  &.btn-large {
+    background: #fff176;
+    color: $secondary;
+    font-size: 1.1rem;
+    padding: 1rem 2rem;
+
+    &:hover {
+      background: lighten(#fff176, 6%);
+    }
+  }
+}
+
+// FOOTER
+.footer {
+  background: white;
+  text-align: center;
+  padding: 1.2rem;
+  font-size: 0.9rem;
+  color: $gray;
+  border-top: 1px solid #e0e0e0;
+}
+
+// RESPONSIVE
+@media (max-width: 768px) {
+  .nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero-title {
+    font-size: 1.8rem;
+  }
+
+  .features .container {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,58 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.alerta {
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    text-align: center;
+
+    &.error {
+        background-color: #ffeaea;
+        color: #b00000;
+        border: 1px solid #f5c2c2;
+    }
+}
+
+.cerrar-sesion {
+    color: v.$azul;
+    font-size: 1.4rem;
+    margin-top: 0.5rem;
+
+    &:hover {
+        font-style: italic;
+        color: v.$negroTransparente;
+    }
+}
+
+.naranja {
+    color: v.$naranja;
+}
+
+.azul {
+    color: v.$azul;
+}
+
+.rojo {
+    color: v.$rojo;
+}
+
+.verde {
+    color: v.$verde;
+}
+
+.hidden {
+    display: none;
+}
+
+.oculto {
+    display: none;
+}
+
+.disabled-select {
+    background: #c4c4c4 !important; // color diferente para deshabilitado
+    border-color: #ccc !important;
+    cursor: not-allowed !important;
+    color: #888 !important;
+}
