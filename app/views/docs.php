@@ -49,7 +49,7 @@
             <section id="instalacion" class="docs-section">
                 <h2>Instalación</h2>
                 <pre><code># Clona el repositorio
-git clone https://github.com/nibel/NiBelCore.git
+git clone https://github.com/NiBelSGC/NiBelCore.git
 cd NiBelCore
 composer install
 npm install (opcional)
