@@ -46,40 +46,31 @@ class Router
     {
         // Inicia la sesión (requerida para validar autenticación)
         session_start();
+
+        // Crea una instancia del objeto Request
+        $request = new Request();
+
         $auth = $_SESSION['login'] ?? null;
 
         // Rutas públicas (no requieren login)
         $rutas_publicas = ['/', '/inicio', '/docs', '/login', '/olvide', '/reestablecer'];
 
-        // Detecta la URL actual de forma compatible con distintos servidores
-        $urlActual = $_SERVER['PATH_INFO']
-            ?? parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-
-        // Elimina posibles prefijos de carpeta (cuando está dentro de /public)
-        $scriptName = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
-        if ($scriptName !== '/' && str_starts_with($urlActual, $scriptName)) {
-            $urlActual = substr($urlActual, strlen($scriptName));
-        }
-
-        // Normaliza la URL actual
-        $urlActual = rtrim($urlActual, '/');
-        if ($urlActual === '') $urlActual = '/';
-
-        // Determina el método de la petición (GET o POST)
-        $metodo = $_SERVER['REQUEST_METHOD'];
+        // Obtiene la URL y el método desde el objeto Request
+        $urlActual = $request->url();
+        $metodo = $request->method();
 
         // Busca la función registrada según el método
         if ($metodo === 'GET') {
             $fn = $this->rutasGET[$urlActual] ?? null;
         } else {
+            // Para peticiones POST, validar el token CSRF antes de continuar
+            Csrf::validarToken($request->post('csrf_token'));
             $fn = $this->rutasPOST[$urlActual] ?? null;
         }
 
         // ---------------------------------------------------------------------
         // Protección de rutas privadas
         // ---------------------------------------------------------------------
-        // Si el usuario no está autenticado y la ruta no es pública,
-        // redirige automáticamente al login.
         if (!in_array($urlActual, $rutas_publicas) && !$auth) {
             header('Location: login');
             exit;
@@ -89,8 +80,8 @@ class Router
         // Ejecución de la ruta encontrada o manejo de error 404
         // ---------------------------------------------------------------------
         if ($fn) {
-            // Ejecuta el callback registrado para la ruta
-            call_user_func($fn, $this);
+            // Ejecuta el callback, pasando el Router y el Request
+            call_user_func($fn, $this, $request);
         } else {
             // Si no existe la ruta, devuelve error 404
             http_response_code(404);

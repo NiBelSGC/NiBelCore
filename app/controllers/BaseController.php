@@ -53,16 +53,18 @@ class BaseController
      * de creación (alta) usando Active Record.
      *
      * @param Router $router
+     * @param Request $request
      */
-    public static function crear(Router $router)
+    public static function crear(Router $router, Request $request)
     {
         // Instancia vacía del modelo (ejemplo)
         $modelo = new ModeloEjemplo;
         $errores = [];
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Sincronizar datos del formulario con el modelo
-            $modelo->sincronizar($_POST);
+        if ($request->method() === 'POST') {
+            // Sincronizar datos del formulario con el modelo (ya saneados)
+            $datosPost = $request->allPostData();
+            $modelo->sincronizar($datosPost);
 
             // Validar
             $errores = $modelo->validar();
@@ -87,9 +89,15 @@ class BaseController
      * ------------------------------------------------
      * Ejemplo de controlador para actualizar un registro.
      */
-    public static function editar(Router $router)
+    public static function editar(Router $router, Request $request)
     {
-        $id = $_GET['id'] ?? null;
+        // Obtenemos el ID de forma segura desde el Request
+        $id = $request->get('id', null, FILTER_VALIDATE_INT);
+        if (!$id) {
+            header('Location: /modulo');
+            exit;
+        }
+
         $modelo = ModeloEjemplo::find($id);
         $errores = [];
 
@@ -98,8 +106,9 @@ class BaseController
             exit;
         }
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $modelo->sincronizar($_POST);
+        if ($request->method() === 'POST') {
+            $datosPost = $request->allPostData();
+            $modelo->sincronizar($datosPost);
             $errores = $modelo->validar();
 
             if (empty($errores)) {

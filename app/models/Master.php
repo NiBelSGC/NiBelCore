@@ -73,25 +73,26 @@ class Master
     /**
      * 📊 consultarSQL()
      * ------------------------------------------------
-     * Ejecuta una consulta SQL y devuelve los resultados como
+     * Ejecuta una consulta SQL preparada y devuelve los resultados como
      * un arreglo de objetos instanciados de la clase hija.
      *
-     * @param string $qry Consulta SQL a ejecutar.
+     * @param string $qry Consulta SQL con placeholders (ej: WHERE id = ?).
+     * @param array $bindings Arreglo de valores a enlazar en la consulta.
      * @return array Arreglo de objetos resultantes.
      */
-    public static function consultarSQL($qry)
+    public static function consultarSQL($qry, $bindings = [])
     {
-        // Ejecutar consulta
-        $result = self::$db->query($qry);
+        // Preparar y ejecutar la consulta de forma segura
+        $stmt = self::$db->prepare($qry);
+        $stmt->execute($bindings);
+        $resultado = $stmt->fetchAll();
 
         // Convertir cada registro en objeto
         $array = [];
-        while ($registro = $result->fetch_assoc()) {
+        foreach ($resultado as $registro) {
             $array[] = static::crearObjeto($registro);
         }
 
-        // Liberar memoria y devolver resultados
-        $result->free();
         return $array;
     }
 

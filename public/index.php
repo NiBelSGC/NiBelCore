@@ -7,6 +7,12 @@
 //    Ejemplo: formatear fechas, debuguear, etc.
 require __DIR__ . '/../app/config/funciones.php';
 
+// 🆕 Carga de la clase de protección CSRF
+require __DIR__ . '/../app/config/Csrf.php';
+
+// 🆕 Carga de la clase Request para encapsular la petición
+require __DIR__ . '/../app/config/Request.php';
+
 // 2️⃣ Router.php → Clase principal que gestiona las rutas del sistema.
 //    Se encarga de recibir las URL y ejecutar el controlador y método correspondientes.
 require __DIR__ . '/../Router.php';
